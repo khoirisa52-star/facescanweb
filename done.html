@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi Berhasil - Facescan Campus</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #E3F2FD; /* Biru muda kalem */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .hamburger {
+            position: absolute;
+            left: 25px;
+            top: 25px;
+            width: 25px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .status-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .image-success {
+            width: 280px; 
+            cursor: pointer;
+            background-color: transparent; 
+            mix-blend-mode: multiply; 
+            transition: transform 0.2s;
+        }
+        .image-success:hover { transform: scale(1.05); }
+
+        .status-text {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 25px;
+            color: #1565C0;
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 15px;
+        }
+
+        .logo-small { width: 55px; }
+        .f-text-bold { font-weight: bold; font-size: 16px; margin: 0; color: #1565C0; }
+        .f-text-small { font-size: 10px; margin: 0; color: #1565C0; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/wkr7jzb8_expires_30_days.png" class="hamburger">
+
+        <div class="status-section">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/x4n1zi0i_expires_30_days.png" 
+                 class="image-success" 
+                 onclick="window.location.href='riwayat.html'">
+            <div class="status-text">ABSENSI BERHASIL</div>
+        </div>
+
+        <div class="footer">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/6q2dgn75_expires_30_days.png" class="logo-small">
+            <div class="footer-text-group">
+                <p class="f-text-bold">FACESCAN CAMPUS</p>
+                <p class="f-text-small">ABSENSI CERDAS, KAMPUS HEBAT</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Diri - Facescan Campus</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background: #FFFFFF;
+            overflow: hidden; 
+        }
+
+        .main-wrapper {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 350px;
+            background: rgba(156, 217, 240, 0.56);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar h2 { font-size: 32px; margin-bottom: 20px; }
+
+        .profile-img-sidebar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .user-name-sidebar {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .nav-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            gap: 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+        }
+
+        .nav-icon { width: 35px; height: 35px; }
+
+        /* KONTEN UTAMA */
+        .content {
+            flex: 1;
+            padding: 10px 50px 0 50px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .profile-main-img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            margin-bottom: 25px;
+        }
+
+        /* Baris Biodata (Bisa diketik) */
+        .info-row {
+            width: 100%;
+            max-width: 600px;
+            background: #D9D9D9;
+            margin-bottom: 12px;
+            padding: 8px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            width: 150px;
+            flex-shrink: 0;
+        }
+
+        .info-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 18px;
+            font-family: inherit;
+        }
+
+        /* Navigasi Tombol - Jarak disesuaikan */
+        .button-group {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;    /* Jauhkan dari tabel agar tidak nempel */
+            margin-bottom: 60px; /* Kasih ruang agar tidak nempel logo footer */
+        }
+
+        .btn {
+            background: #37C9F6;
+            border: none;
+            padding: 10px 60px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 4px rgba(0,0,0,0.2);
+        }
+
+        /* FOOTER */
+        .content-footer {
+            margin-top: auto; /* Paksa ke paling bawah */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            padding-bottom: 25px;
+        }
+
+        .footer-logo { width: 60px; }
+        .f-bold { font-weight: bold; font-size: 18px; margin: 0; }
+        .f-small { font-size: 11px; margin: 0; }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/h4sdyzxi_expires_30_days.png" class="profile-img-sidebar">
+            <p class="user-name-sidebar">khoirunisa salsabillah..</p>
+
+            <a href="login.html" class="nav-item"><img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/47wcjl5r_expires_30_days.png" class="nav-icon"> LOGIN</a>
+            <a href="jadwal.html" class="nav-item"><img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/a6b0721t_expires_30_days.png" class="nav-icon"> JADWAL KULIAH</a>
+            <a href="scan.html" class="nav-item"><img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/c4ittw2w_expires_30_days.png" class="nav-icon"> SCAN WAJAH</a>
+            <a href="statistik.html" class="nav-item"><img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/tbw0vxnc_expires_30_days.png" class="nav-icon"> STATISTIK KEHADIRAN</a>
+            <a href="biodata.html" class="nav-item" style="background: rgba(255,255,255,0.5); border-radius: 10px;"><img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/6lf7uh4q_expires_30_days.png" class="nav-icon"> BIODATA DIRI</a>
+            <a href="logout.html" class="nav-item"><img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/8d0yw5cz_expires_30_days.png" class="nav-icon"> LOGOUT</a>
+        </div>
+
+        <div class="content">
+            <h1 class="page-title">BIODATA DIRI</h1>
+            
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/got59cf2_expires_30_days.png" class="profile-main-img">
+
+            <div class="info-row">
+                <label class="info-label">NAMA :</label>
+                <input type="text" class="info-input" value="khoirunisa salsabillah..">
+            </div>
+            <div class="info-row">
+                <label class="info-label">NIM :</label>
+                <input type="text" class="info-input" value="230511150">
+            </div>
+            <div class="info-row">
+                <label class="info-label">KELAS :</label>
+                <input type="text" class="info-input" value="TI23E">
+            </div>
+            <div class="info-row">
+                <label class="info-label">EMAIL/HP :</label>
+                <input type="email" class="info-input" value="khoirunisa@gmail.com">
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="location.href='statistik.html'">BACK</button>
+                <button class="btn" onclick="location.href='logout.html'">NEXT</button>
+            </div>
+
+            <div class="content-footer">
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/13rjy4gp_expires_30_days.png" class="footer-logo">
+                <div class="footer-text">
+                    <p class="f-bold">FACESCAN CAMPUS</p>
+                    <p class="f-small">ABSENSI CERDAS, KAMPUS HEBAT</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

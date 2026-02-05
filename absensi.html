@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi - Facescan Campus</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #DEEFF98F;
+            overflow: hidden; 
+        }
+
+        .contain {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 30px 50px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* HEADER */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 10;
+        }
+
+        .left-header {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-icon {
+            width: 30px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .brand-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            padding-left: 30px; 
+            color: #000;
+        }
+
+        .right-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* AREA TENGAH */
+        .main-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Benar-benar di titik tengah */
+            width: 85%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-inner {
+            width: 100%;
+        }
+
+        .day-label {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .card-detail {
+            background: #8999B9;
+            color: white;
+            padding: 15px 40px; 
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .matkul-info h2 { margin: 0; font-size: 22px; }
+        .matkul-info p { margin: 5px 0 0 0; font-size: 16px; }
+
+        .btn-absen {
+            background: #37C9F6;
+            color: white;
+            padding: 10px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* KAMERA - SUDAH DITURUNKAN SEDIKIT */
+        .scan-section {
+            margin-top: 70px; /* Ditambah dari 50px ke 70px biar lebih turun */
+            display: flex;
+            justify-content: center;
+        }
+
+        .scan-icon {
+            width: 115px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .scan-icon:hover {
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo { width: 60px; }
+        .footer-text h3 { margin: 0; font-size: 16px; }
+        .footer-text p { margin: 0; font-size: 11px; }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="header-top">
+            <div class="left-header">
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/m2w3uhfr_expires_30_days.png" class="menu-icon">
+                <h1 class="brand-title">FACESCAN CAMPUS</h1>
+            </div>
+            <div class="right-header">
+                <div class="greeting-section" style="text-align: right;">
+                    <span style="font-size: 14px;">selamat datang..</span><br>
+                    <span style="font-weight: bold; font-size: 18px;">khoirunisa salsabillah..</span>
+                </div>
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/21yq43mr_expires_30_days.png" class="user-avatar">
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="content-inner">
+                <div class="day-label">SENIN</div>
+                <div class="card-detail">
+                    <div class="matkul-info">
+                        <h2>Interaksi Manusia Komputer</h2>
+                        <p>08.00 - 10.15</p>
+                    </div>
+                    <button class="btn-absen" onclick="window.location.href='scan.html'">Absen dulu</button>
+                </div>
+            </div>
+
+            <div class="scan-section">
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/9n59siqj_expires_30_days.png" class="scan-icon" onclick="window.location.href='scan.html'">
+            </div>
+        </div>
+
+        <div class="footer">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/50ckq66v_expires_30_days.png" class="footer-logo">
+            <div class="footer-text">
+                <h3>FACESCAN CAMPUS</h3>
+                <p>ABSENSI CERDAS, KAMPUS HEBAT</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

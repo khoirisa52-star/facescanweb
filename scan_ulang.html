@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Ulang - Facescan Campus</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+    <style>
+        html, body {
+            height: 100%; margin: 0; padding: 0; overflow: hidden;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #e0f4ff; 
+        }
+
+        .container {
+            display: flex; flex-direction: column; height: 100vh;
+            width: 100%; position: relative; align-items: center;
+        }
+
+        .hamburger { width: 25px; cursor: pointer; position: absolute; left: 20px; top: 20px; }
+
+        .header-section { margin-top: 40px; text-align: center; }
+        .brand-title { 
+            font-size: 32px; font-weight: bold; color: #1a3a5a; 
+            margin: 0; letter-spacing: 1px;
+        }
+
+        .main-content {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; flex-grow: 1; width: 100%; gap: 40px; 
+        }
+
+        .scan-area {
+            display: grid; grid-template-columns: 1fr auto 1fr;
+            align-items: center; width: 100%; max-width: 1000px;
+        }
+
+        .side-label {
+            font-size: 18px; font-weight: bold; color: #2c5282;
+            text-align: right; padding-right: 30px; line-height: 1.3;
+        }
+
+        .circle-frame {
+            width: 320px; height: 320px; border-radius: 50%;
+            border: 10px solid #FF0000; 
+            overflow: hidden;
+            background-color: #000; position: relative;
+            animation: nisaRainbow 6s linear infinite;
+        }
+
+        @keyframes nisaRainbow {
+            0%   { border-color: #FF0000; box-shadow: 0 0 20px #FF0000; }
+            20%  { border-color: #FF8C00; box-shadow: 0 0 20px #FF8C00; }
+            40%  { border-color: #FFFF00; box-shadow: 0 0 20px #FFFF00; }
+            60%  { border-color: #87CEFA; box-shadow: 0 0 20px #87CEFA; }
+            80%  { border-color: #32CD32; box-shadow: 0 0 20px #32CD32; }
+            100% { border-color: #FF0000; box-shadow: 0 0 20px #FF0000; }
+        }
+
+        .laser-line {
+            position: absolute; width: 100%; height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px #fff;
+            top: 0; z-index: 10; animation: scanning 2.5s linear infinite;
+        }
+
+        @keyframes scanning {
+            0% { top: 0%; } 50% { top: 100%; } 100% { top: 0%; }
+        }
+
+        #video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+
+        .btn-status {
+            background-color: #2c5282; border: none; padding: 18px 20px;
+            width: 380px; font-size: 18px; font-weight: bold; border-radius: 50px;
+            color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease; text-transform: uppercase;
+            text-align: center;
+        }
+
+        .footer-clean {
+            display: flex; align-items: center; justify-content: center;
+            gap: 15px; padding-bottom: 40px; width: 100%;
+        }
+
+        .footer-logo { width: 55px; height: auto; }
+        .f-text-bold { font-weight: bold; font-size: 16px; margin: 0; color: #1a3a5a; }
+        .f-text-small { font-size: 10px; margin: 0; color: #4a5568; font-weight: 600; }
+        
+        #myFaceRef { display: none; }
+    </style>
+</head>
+<body>
+
+    <img id="myFaceRef" src="nisa.jpeg">
+
+    <div class="container">
+        <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/zjdikiym_expires_30_days.png" class="hamburger">
+
+        <div class="header-section">
+            <h1 class="brand-title">FACESCAN CAMPUS</h1>
+        </div>
+
+        <div class="main-content">
+            <div class="scan-area">
+                <div class="side-label">POSISIKAN WAJAH<br>ANDA DI LINGKARAN INI</div>
+                <div class="circle-frame">
+                    <div class="laser-line"></div>
+                    <video id="video" autoplay playsinline muted></video>
+                </div>
+                <div></div> 
+            </div>
+
+            <button class="btn-status" id="mainButton">SIAP MEMINDAI...</button>
+        </div>
+
+        <div class="footer-clean">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/50ckq66v_expires_30_days.png" class="footer-logo">
+            <div class="footer-text-group">
+                <p class="f-text-bold">FACESCAN CAMPUS</p>
+                <p class="f-text-small">ABSENSI CERDAS, KAMPUS HEBAT</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const mainButton = document.getElementById('mainButton');
+        const myFaceRefImg = document.getElementById('myFaceRef');
+        let faceMatcher = null;
+        let isProcessing = false;
+
+        async function init() {
+            const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model/';
+            try {
+                setTimeout(() => { if(!faceMatcher) mainButton.innerHTML = "MEMUAT DATA..."; }, 1200);
+
+                await Promise.all([
+                    faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
+                    faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+                    faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL)
+                ]);
+                
+                const detections = await faceapi.detectSingleFace(myFaceRefImg).withFaceLandmarks().withFaceDescriptor();
+                
+                if (detections) {
+                    faceMatcher = new faceapi.FaceMatcher(detections, 0.6);
+                    startCamera();
+                }
+            } catch (e) {
+                mainButton.innerHTML = "ERROR SISTEM";
+            }
+        }
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+                video.srcObject = stream;
+                mainButton.innerHTML = "MENCARI WAJAH...";
+                // Interval pengecekan dipercepat ke 2 detik agar lebih responsif
+                setInterval(autoScan, 2000);
+            } catch (err) {
+                mainButton.innerHTML = "KAMERA ERROR";
+            }
+        }
+
+        async function autoScan() {
+            if (isProcessing || !faceMatcher) return;
+
+            const detections = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
+
+            if (!detections) {
+                mainButton.innerHTML = "MENCARI WAJAH...";
+                return;
+            }
+
+            const match = faceMatcher.findBestMatch(detections.descriptor);
+            
+            if (match.label !== 'unknown') {
+                isProcessing = true;
+                mainButton.innerHTML = "WAJAH TERDETEKSI!";
+                
+                mainButton.style.backgroundColor = "#32CD32"; 
+                mainButton.style.color = "white";
+                
+                speakSuccess();
+                
+                // Redirect ke done.html setelah 3 detik agar suara selesai bicara
+                setTimeout(() => {
+                    window.location.href = 'done.html';
+                }, 3000); 
+            } else {
+                mainButton.innerHTML = "WAJAH TIDAK DIKENALI";
+                mainButton.style.backgroundColor = "#FF4500"; 
+                setTimeout(() => { if(!isProcessing) mainButton.innerHTML = "MENCARI WAJAH..."; }, 2000);
+            }
+        }
+
+        function speakSuccess() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                // Menambahkan tanda koma dan titik agar AI memberi jeda saat bicara
+                const msg = new SpeechSynthesisUtterance("Absensi, pemrograman web, berhasil. Halo, Khoirunisa.");
+                
+                msg.lang = 'id-ID';
+                msg.rate = 0.8;  // Kecepatan diperlambat agar artikulasi "Pemrograman" lebih jelas
+                msg.pitch = 1.0; // Nada normal
+                
+                window.speechSynthesis.speak(msg);
+            }
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

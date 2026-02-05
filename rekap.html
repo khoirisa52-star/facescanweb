@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekap Absensi - Facescan Campus</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #FFFFFF;
+            overflow: hidden; /* Agar pas satu layar */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Ikon Garis 3 patokan geser */
+        .hamburger {
+            width: 30px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin-left: 30px;
+        }
+
+        .profile-view {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Mata Kuliah di tengah & BOLD */
+        .label-main { 
+            font-size: 28px; 
+            font-weight: bold; /* Bold sesuai request */
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Container untuk menyejajarkan SENIN dan Tabel dengan Hamburger */
+        /* 30px (margin) + 30px (lebar hamburger) = 60px */
+        .content-area {
+            margin-left: 60px; 
+            padding-right: 60px; /* Agar seimbang kanan kiri */
+        }
+
+        /* SENIN di ujung kiri tabel & TIDAK BOLD */
+        .label-day { 
+            font-size: 22px; 
+            font-weight: normal; /* Tidak bold sesuai request */
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .course-list {
+            width: 100%;
+        }
+
+        .card {
+            background: #8999B9;
+            padding: 15px 25px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .card-info h3 { margin: 0; font-size: 20px; }
+        .card-info p { margin: 5px 0 0 0; font-size: 16px; }
+
+        .status-check { font-size: 30px; }
+        .status-badge { 
+            background: #D9D9D9; 
+            color: black; 
+            padding: 5px 15px; 
+            border-radius: 5px; 
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .nav-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background: #37C9F6;
+            border: none;
+            padding: 10px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 20px;
+        }
+
+        .footer-logo { width: 70px; }
+        .f-bold { font-weight: bold; font-size: 16px; margin: 0; }
+        .f-small { font-size: 12px; margin: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/dhwthknv_expires_30_days.png" class="hamburger">
+
+        <div class="profile-view">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/j4xsnh5p_expires_30_days.png" class="avatar-img">
+        </div>
+
+        <div class="label-main">Mata Kuliah</div>
+
+        <div class="content-area">
+            <div class="label-day">SENIN</div>
+
+            <div class="course-list">
+                <div class="card">
+                    <div class="card-info">
+                        <h3>Interaksi Manusia Komputer</h3>
+                        <p>08.00 - 10.15</p>
+                    </div>
+                    <div class="status-check">✅</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-info">
+                        <h3>PEMOGRAMAN WEB</h3>
+                        <p>13.00 - 15.00</p>
+                    </div>
+                    <div class="status-badge">Belum Absen</div>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <button class="btn" onclick="window.location.href='berhasil.html'">Back</button>
+                <button class="btn" onclick="window.location.href='home.html'">Next</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/v51gkbip_expires_30_days.png" class="footer-logo">
+            <div>
+                <p class="f-bold">FACESCAN CAMPUS</p>
+                <p class="f-small">ABSENSI CERDAS, KAMPUS HEBAT</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

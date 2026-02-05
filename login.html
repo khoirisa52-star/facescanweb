@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Facescan Campus</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #DEEFF9;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;    
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .text-header {
+            color: #000000;
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .image-profile {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%; 
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .input-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 25px;
+        }
+
+        .text-label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #000;
+            font-weight: bold;
+            align-self: flex-start;
+            padding-left: 5px;
+        }
+
+        .input-field {
+            background: #F0F4F8;
+            border-radius: 50px;
+            border: 3px solid #8999B9; 
+            padding: 15px 25px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            outline: none;
+            color: #333;
+        }
+
+        .action-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .button-login {
+            background: #37C9F6;
+            border-radius: 50px;
+            border: none;
+            padding: 12px 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 0 #2bb5e0;
+        }
+
+        .text-link {
+            color: #1F1919;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: underline;
+            white-space: nowrap;
+        }
+
+        .hidden { display: none !important; }
+
+        .footer {
+            margin-top: auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-footer { width: 50px; height: auto; }
+        
+        .message {
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="text-header" id="form-title">FACESCAN CAMPUS</div>
+        
+        <div id="message" class="message"></div>
+
+        <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/9ztp34e4_expires_30_days.png" class="image-profile" />
+
+        <div class="form-group">
+            <div id="user-section" class="input-wrapper">
+                <span class="text-label">Username</span>
+                <input type="text" id="username" class="input-field" placeholder="Masukkan username" value="khoirunisa" />
+            </div>
+
+            <div id="email-section" class="input-wrapper hidden">
+                <span class="text-label">Email Pribadi</span>
+                <input type="email" id="email" placeholder="nama@email.com" class="input-field" />
+            </div>
+
+            <div id="old-pass-section" class="input-wrapper hidden">
+                <span class="text-label">Password Sebelumnya</span>
+                <input type="password" id="oldPassword" placeholder="****" class="input-field" />
+            </div>
+
+            <div id="pass-section" class="input-wrapper">
+                <span class="text-label" id="pass-label">Password</span>
+                <input type="password" id="password" class="input-field" placeholder="Masukkan password" value="khoir123" />
+            </div>
+
+            <div class="action-row">
+                <span id="link-forgot" class="text-link" onclick="setMode('forgot')">Lupa password?</span>
+                
+                <button id="btn-main" class="button-login" onclick="handleAction()">
+                    LOGIN
+                </button>
+                
+                <span id="link-reg" class="text-link" onclick="setMode('register')">Buat akun baru</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/g057wli7_expires_30_days.png" class="logo-footer" />
+            <div style="display:flex; flex-direction:column;">
+                <span style="font-weight:bold; font-size:14px;">FACESCAN CAMPUS</span>
+                <span style="font-size:10px;">ABSENSI CERDAS, KAMPUS HEBAT</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let usersDB = JSON.parse(localStorage.getItem('usersDB')) || [
+            { 
+                username: "khoirunisa", 
+                password: "khoir123", 
+                email: "khoirunisa@example.com",
+                name: "Khoirunisa Salsabillah",
+                faceRegistered: false
+            }
+        ];
+
+        let currentMode = 'login';
+
+        function showMessage(text, type = 'success') {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = 'message ' + type;
+            msg.style.display = 'block';
+            
+            setTimeout(() => {
+                msg.style.display = 'none';
+            }, 3000);
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            const title = document.getElementById('form-title');
+            const userSec = document.getElementById('user-section');
+            const emailSec = document.getElementById('email-section');
+            const oldPassSec = document.getElementById('old-pass-section');
+            const passLabel = document.getElementById('pass-label');
+            const btn = document.getElementById('btn-main');
+            const linkForgot = document.getElementById('link-forgot');
+            const linkReg = document.getElementById('link-reg');
+
+            if (mode === 'forgot') {
+                title.innerText = "GANTI PASSWORD";
+                userSec.classList.add('hidden');
+                emailSec.classList.remove('hidden');
+                oldPassSec.classList.remove('hidden');
+                passLabel.innerText = "Password Baru";
+                btn.innerText = "UPDATE";
+                linkForgot.classList.add('hidden');
+                linkReg.innerText = "Batal / Login";
+                linkReg.onclick = () => setMode('login');
+            } else if (mode === 'register') {
+                title.innerText = "DAFTAR AKUN";
+                userSec.classList.remove('hidden');
+                emailSec.classList.remove('hidden');
+                oldPassSec.classList.add('hidden');
+                passLabel.innerText = "Password";
+                btn.innerText = "DAFTAR";
+                linkForgot.classList.add('hidden');
+                linkReg.innerText = "Batal / Login";
+                linkReg.onclick = () => setMode('login');
+            } else {
+                title.innerText = "FACESCAN CAMPUS";
+                userSec.classList.remove('hidden');
+                emailSec.classList.add('hidden');
+                oldPassSec.classList.add('hidden');
+                passLabel.innerText = "Password";
+                btn.innerText = "LOGIN";
+                linkForgot.classList.remove('hidden');
+                linkReg.innerText = "Buat akun baru";
+                linkReg.onclick = () => setMode('register');
+            }
+        }
+
+        function handleAction() {
+            if (currentMode === 'login') {
+                loginUser();
+            } else if (currentMode === 'register') {
+                registerUser();
+            } else if (currentMode === 'forgot') {
+                resetPassword();
+            }
+        }
+
+        function loginUser() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (!username || !password) {
+                showMessage("Username dan password harus diisi!", "error");
+                return;
+            }
+            
+            const user = usersDB.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                showMessage("Login berhasil!", "success");
+                
+                const faceData = localStorage.getItem(`face_${username}`);
+                
+                setTimeout(() => {
+                    if (faceData) {
+                        window.location.href = 'jadwal.html';
+                    } else {
+                        showMessage("Ambil data wajah pertama kali...", "success");
+                        setTimeout(() => {
+                            window.location.href = 'scan.html';
+                        }, 1000);
+                    }
+                }, 1500);
+            } else {
+                showMessage("Username atau password salah!", "error");
+            }
+        }
+
+        function registerUser() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value.trim();
+            
+            if (!username || !password || !email) {
+                showMessage("Semua field harus diisi!", "error");
+                return;
+            }
+            
+            if (usersDB.find(u => u.username === username)) {
+                showMessage("Username sudah digunakan!", "error");
+                return;
+            }
+            
+            const newUser = {
+                username: username,
+                password: password,
+                email: email,
+                name: username,
+                faceRegistered: false
+            };
+            
+            usersDB.push(newUser);
+            localStorage.setItem('usersDB', JSON.stringify(usersDB));
+            
+            showMessage("Akun berhasil dibuat! Silakan login.", "success");
+            
+            setTimeout(() => {
+                setMode('login');
+                document.getElementById('username').value = username;
+                document.getElementById('password').value = '';
+                document.getElementById('email').value = '';
+            }, 1000);
+        }
+
+        function resetPassword() {
+            const email = document.getElementById('email').value.trim();
+            const oldPassword = document.getElementById('oldPassword').value;
+            const newPassword = document.getElementById('password').value;
+            
+            if (!email || !oldPassword || !newPassword) {
+                showMessage("Semua field harus diisi!", "error");
+                return;
+            }
+            
+            const userIndex = usersDB.findIndex(u => u.email === email && u.password === oldPassword);
+            
+            if (userIndex === -1) {
+                showMessage("Email atau password lama salah!", "error");
+                return;
+            }
+            
+            usersDB[userIndex].password = newPassword;
+            localStorage.setItem('usersDB', JSON.stringify(usersDB));
+            
+            showMessage("Password berhasil diubah! Silakan login.", "success");
+            
+            setTimeout(() => {
+                setMode('login');
+            }, 1500);
+        }
+
+        window.onload = function() {
+            localStorage.setItem('usersDB', JSON.stringify(usersDB));
+            
+            document.getElementById('password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleAction();
+                }
+            });
+        };
+    </script>
+</body>
+</html>

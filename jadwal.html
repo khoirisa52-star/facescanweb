@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Kuliah - Facescan Campus</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #DEEFF98F; 
+            overflow: hidden; /* Fix satu layar */
+        }
+
+        .contain {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .image-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* TITLE - TETAP DI ATAS */
+        .title-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center; 
+            margin: -15px 0 10px 0; 
+        }
+
+        .main-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0;
+            color: #333;
+        }
+
+        /* GRID JADWAL - DIKEBAWAHIN & DITENGAHIN */
+        .jadwal-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px 60px;
+            padding: 0 5%;
+            width: 90%;
+            margin: auto auto; /* Ini yang bikin tabel ke tengah secara vertikal */
+            flex-grow: 1;
+            align-content: center; /* Memastikan isi grid di tengah */
+        }
+
+        .day-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .day-name {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* DESAIN KARTU BIRU ASLI KAMU */
+        .card-matkul {
+            background: #8999B9; 
+            padding: 15px 30px;
+            border-radius: 15px;
+            color: white;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .matkul-name {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .matkul-time {
+            display: block;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* NAVIGATION BUTTONS */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 5%;
+            width: 90%;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background: #3DD8FF;
+            border: none;
+            padding: 12px 60px;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #2bb5e0;
+        }
+
+        /* FOOTER */
+        .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .footer-logo {
+            width: 65px;
+            height: auto;
+        }
+
+        .footer-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .footer-subtitle {
+            font-size: 12px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="header">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/m2w3uhfr_expires_30_days.png" style="width: 25px;">
+            <div class="user-info">
+                <div style="text-align: right;">
+                    <span style="display:block; font-size: 12px;">selamat datang..</span>
+                    <span style="font-weight:bold; font-size:16px;">khoirunisa salsabillah</span>
+                </div>
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/21yq43mr_expires_30_days.png" class="image-avatar" />
+            </div>
+        </div>
+
+        <div class="title-wrapper">
+            <h1 class="main-title">Jadwal Kuliah</h1>
+        </div>
+
+        <div class="jadwal-container">
+            <div class="day-section">
+                <div class="day-name">SENIN</div>
+                <div class="card-matkul">
+                    <span class="matkul-name">INTERAKSI MANUSIA KOMPUTER</span>
+                    <span class="matkul-time">08:00 - 10.15</span>
+                </div>
+                <div class="card-matkul">
+                    <span class="matkul-name">PEMOGRAMAN WEB</span>
+                    <span class="matkul-time">13.00 - 15.00</span>
+                </div>
+                
+                <div class="day-name" style="margin-top: 5px;">SELASA</div>
+                <div class="card-matkul">
+                    <span class="matkul-name">Grafika Komputer & Visualisasi</span>
+                    <span class="matkul-time">08:00 - 10.20</span>
+                </div>
+                <div class="card-matkul">
+                    <span class="matkul-name">Tes Implementasi Sistem</span>
+                    <span class="matkul-time">13.00 - 15.00</span>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-name">KAMIS</div>
+                <div class="card-matkul">
+                    <span class="matkul-name">ANALISIS DATA VISUAL</span>
+                    <span class="matkul-time">08.00 - 10.00</span>
+                </div>
+                <div class="card-matkul">
+                    <span class="matkul-name">SISTEM INFORMASI</span>
+                    <span class="matkul-time">10.00 - 12.00</span>
+                </div>
+
+                <div class="day-name" style="margin-top: 5px;">JUM'AT</div>
+                <div class="card-matkul">
+                    <span class="matkul-name">METODE PENELITIAN</span>
+                    <span class="matkul-time">08.00 - 10.00</span>
+                </div>
+                <div class="card-matkul">
+                    <span class="matkul-name">BASIS DATA</span>
+                    <span class="matkul-time">10.00 - 12.30</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn" onclick="window.location.href='login.html'">BACK</button>
+            <button class="btn" onclick="window.location.href='absensi.html'">NEXT</button>
+        </div>
+
+        <div class="footer">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/50ckq66v_expires_30_days.png" class="footer-logo" />
+            <div class="footer-text-group">
+                <p class="footer-title">FACESCAN CAMPUS</p>
+                <p class="footer-subtitle">ABSENSI CERDAS, KAMPUS HEBAT</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

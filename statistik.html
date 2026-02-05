@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistik Kehadiran - Facescan Campus</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background: #FFFFFF;
+            color: #000;
+            zoom: 0.9; 
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 1 & 2. Teks dihapus, ikon garis 3 di ujung pojok kiri */
+        .top-nav {
+            display: flex;
+            justify-content: flex-start; 
+            padding-top: 10px;
+        }
+
+        .hamburger {
+            width: 30px; 
+            cursor: pointer;
+        }
+
+        .page-header {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 40px 0;
+        }
+
+        .stat-grid {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            width: 100px;
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .card b { display: block; font-size: 13px; margin-bottom: 4px; }
+        .card span { display: block; font-size: 20px; font-weight: bold; }
+
+        .hadir { background: #A2E4FD; }
+        .sakit { background: #84EF76; }
+        .izin  { background: #F5A865; }
+        .alfa  { background: #FFE95A; }
+
+        .chart-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .chart-wrapper {
+            width: 350px;
+            position: relative;
+        }
+
+        .chart-img {
+            width: 100%;
+            height: auto;
+        }
+
+        .percent-row {
+            display: flex;
+            margin-top: 15px;
+            padding-left: 45px;
+        }
+
+        .percent-row span {
+            flex: 1;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Navigasi Tombol */
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 0 auto 50px;
+        }
+
+        .btn {
+            background: #37C9F6;
+            border: none;
+            padding: 12px 60px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 20px;
+        }
+
+        .footer-logo { width: 35px; }
+        .f-text b { font-size: 13px; display: block; }
+        .f-text span { font-size: 9px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-nav">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/wtg0nke1_expires_30_days.png" class="hamburger">
+        </div>
+
+        <div class="page-header">STATISTIK KEHADIRAN</div>
+
+        <div class="stat-grid">
+            <div class="card hadir"><b>HADIR</b><span>85%</span></div>
+            <div class="card sakit"><b>SAKIT</b><span>5%</span></div>
+            <div class="card izin"><b>IZIN</b><span>7%</span></div>
+            <div class="card alfa"><b>ALFA</b><span>3%</span></div>
+        </div>
+
+        <div class="chart-section">
+            <div class="chart-wrapper">
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/y4qhlgdm_expires_30_days.png" class="chart-img">
+                <div class="percent-row">
+                    <span>3%</span>
+                    <span>7%</span>
+                    <span>5%</span>
+                    <span>85%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn" onclick="location.href='riwayat.html'">BACK</button>
+            <button class="btn" onclick="location.href='biodata.html'">NEXT</button>
+        </div>
+
+        <div class="footer">
+            <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/yzyno2rg_expires_30_days.png" class="footer-logo">
+            <div class="f-text">
+                <b>FACESCAN CAMPUS</b>
+                <span>ABSENSI CERDAS, KAMPUS HEBAT</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

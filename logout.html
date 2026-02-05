@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Facescan Campus</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Kecilin tampilan dikit biar gak kegedean */
+            zoom: 0.9;
+        }
+
+        .contain {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .user-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        /* Menu List Styling */
+        .menu-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            gap: 20px;
+            padding: 12px;
+            border-radius: 15px;
+            transition: 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #f5f5f5;
+        }
+
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .menu-text {
+            font-size: 20px;
+        }
+
+        /* Tombol Logout */
+        .btn-logout {
+            background: #37C9F6;
+            color: black;
+            border: none;
+            padding: 15px 70px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: #2bb5df;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contain">
+        <h1 class="brand-name">FACESCAN CAMPUS</h1>
+        
+        <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/ce3lpf8e_expires_30_days.png" class="profile-img">
+        
+        <h2 class="user-name">khoirunisa salsabillah..</h2>
+
+        <div class="menu-container">
+            <a href="login.html" class="menu-item">
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/tvb7msyn_expires_30_days.png" class="menu-icon">
+                <span class="menu-text">LOGIN</span>
+            </a>
+
+            <a href="jadwal.html" class="menu-item">
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/0ic5qt43_expires_30_days.png" class="menu-icon">
+                <span class="menu-text">JADWAL KULIAH</span>
+            </a>
+
+            <a href="biodata.html" class="menu-item">
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/kfhzroyr_expires_30_days.png" class="menu-icon">
+                <span class="menu-text">BIODATA DIRI</span>
+            </a>
+
+            <a href="statistik.html" class="menu-item">
+                <img src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/s31nZSTslz/o46ateuv_expires_30_days.png" class="menu-icon">
+                <span class="menu-text">STATISTIK</span>
+            </a>
+        </div>
+
+        <button class="btn-logout" onclick="logoutKeHalamanAwal()">
+            LOGOUT
+        </button>
+    </div>
+
+    <script>
+        function logoutKeHalamanAwal() {
+            // Langsung pindah ke login.html
+            window.location.href = "login.html"; 
+        }
+    </script>
+
+</body>
+</html>                                                                                                     
